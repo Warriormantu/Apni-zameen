@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { properties } from '../services/api';
 import FallbackUI from '../components/common/FallbackUI';
-import PageLayout from '../components/layout/PageLayout';
+import Layout from '../components/layout/Layout';
 import FallbackImage from '../components/common/FallbackImage';
 import PropertyCardSkeleton from '../components/common/PropertyCardSkeleton';
+import PageTitle from '../components/common/PageTitle';
 
 const Home = () => {
   const [featuredProperties, setFeaturedProperties] = useState([]);
@@ -207,84 +208,101 @@ const Home = () => {
   };
 
   return (
-    <PageLayout
-      pageTitle="Home"
-      pageDescription="Find your perfect property on Apni Zameen - India's trusted real estate platform for buying, selling and renting properties."
-    >
+    <Layout>
+      <PageTitle title="Home - Apni Zameen | Find Your Dream Property" />
+
       {/* Hero section */}
-      <div className="relative bg-white dark:bg-secondary-900">
-        {/* Add existing hero content here */}
-      
-        {/* Featured properties section */}
-        <section className="py-12 bg-gray-50 dark:bg-secondary-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
-                Featured Properties
-              </h2>
-              <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 dark:text-gray-300 sm:mt-4">
-                Discover our handpicked selection of premium properties
-              </p>
-            </div>
-
-            {/* Render property cards with skeleton loading state */}
-            {renderPropertyCards()}
-
-            <div className="mt-12 text-center">
+      <div className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+          <div className="text-center">
+            <h1 className="text-4xl font-extrabold sm:text-5xl md:text-6xl">
+              Find Your Perfect Property
+            </h1>
+            <p className="mt-6 text-xl max-w-3xl mx-auto">
+              Browse thousands of properties across India. Buy, sell, or rent with confidence on Apni Zameen.
+            </p>
+            <div className="mt-10 flex justify-center">
               <Link
                 to="/properties"
-                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-emerald-600 hover:bg-emerald-700"
+                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-emerald-700 bg-white hover:bg-gray-100 md:py-4 md:text-lg md:px-8"
               >
-                View All Properties
-                <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
+                Browse Properties
+              </Link>
+              <Link
+                to="/contact"
+                className="ml-4 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-emerald-800 hover:bg-emerald-900 md:py-4 md:text-lg md:px-8"
+              >
+                Contact Us
               </Link>
             </div>
           </div>
-        </section>
-
-        {/* Property categories section */}
-        <section className="py-12 bg-white dark:bg-secondary-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
-                Explore Property Categories
-              </h2>
-              <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 dark:text-gray-300 sm:mt-4">
-                Find exactly what you're looking for across our diverse property offerings
-              </p>
-            </div>
-
-            <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {categories.map((category) => (
-                <Link
-                  key={category.name}
-                  to={category.link}
-                  className="group relative bg-gray-100 dark:bg-secondary-800 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
-                >
-                  <div className="aspect-w-16 aspect-h-9 sm:aspect-w-3 sm:aspect-h-2">
-                    <FallbackImage
-                      src={category.image}
-                      alt={category.name}
-                      className="w-full h-full object-cover"
-                      fallbackSrc="/assets/images/fallback-category.jpg"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black opacity-70 group-hover:opacity-80 transition-opacity duration-300"></div>
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <h3 className="text-2xl font-bold">{category.name}</h3>
-                    <p className="mt-2">{category.description}</p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Additional sections here */}
+        </div>
       </div>
-    </PageLayout>
+      
+      {/* Featured properties section */}
+      <section className="py-12 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+              Featured Properties
+            </h2>
+            <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
+              Discover our handpicked selection of premium properties
+            </p>
+          </div>
+
+          {/* Render property cards with skeleton loading state */}
+          {renderPropertyCards()}
+
+          <div className="mt-12 text-center">
+            <Link
+              to="/properties"
+              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-emerald-600 hover:bg-emerald-700"
+            >
+              View All Properties
+              <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Property categories section */}
+      <section className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+              Explore by Category
+            </h2>
+            <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
+              Find the perfect property that fits your needs
+            </p>
+          </div>
+          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {categories.map((category) => (
+              <Link
+                key={category.name}
+                to={category.link}
+                className="group relative rounded-lg overflow-hidden bg-white shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <div className="aspect-w-16 aspect-h-9">
+                  <FallbackImage
+                    src={category.image}
+                    alt={category.name}
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-6">
+                  <h3 className="text-xl font-bold text-white">{category.name}</h3>
+                  <p className="text-sm text-white/90 mt-1">{category.description}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+    </Layout>
   );
 };
 

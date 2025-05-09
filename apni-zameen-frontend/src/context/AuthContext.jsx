@@ -8,6 +8,24 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [authError, setAuthError] = useState(null);
+  const [isOffline, setIsOffline] = useState(false);
+
+  // Monitor network status
+  useEffect(() => {
+    const handleOnline = () => setIsOffline(false);
+    const handleOffline = () => setIsOffline(true);
+
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+    
+    // Initial check
+    setIsOffline(!navigator.onLine);
+
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []);
 
   // Check if user is already logged in on component mount
   useEffect(() => {
@@ -27,20 +45,40 @@ export const AuthProvider = ({ children }) => {
         setAuthError(null);
       } catch (error) {
         console.error('Authentication error:', error);
-        // Clear invalid token
-        localStorage.removeItem('token');
-        setAuthError('Your session has expired. Please log in again.');
+        
+        if (isOffline) {
+          // If offline, allow cached authentication to persist
+          // but mark it as potentially stale
+          const cachedUser = JSON.parse(localStorage.getItem('user_cache') || 'null');
+          if (cachedUser) {
+            setUser(cachedUser);
+            setIsAuthenticated(true);
+            setAuthError('Working offline with cached data');
+          } else {
+            // No cached user data
+            localStorage.removeItem('token');
+            setAuthError('No network connection. Please connect to the internet and try again.');
+          }
+        } else {
+          // Online but authentication failed
+          localStorage.removeItem('token');
+          localStorage.removeItem('user_cache');
+          setAuthError('Your session has expired. Please log in again.');
+        }
       } finally {
         setLoading(false);
       }
     };
 
     checkAuth();
-  }, []);
+  }, [isOffline]);
 
   const fetchUserProfile = async () => {
     try {
-      return await userApi.getProfile();
+      const profile = await userApi.getProfile();
+      // Cache user data for offline access
+      localStorage.setItem('user_cache', JSON.stringify(profile));
+      return profile;
     } catch (error) {
       console.error('Error fetching user profile:', error);
       throw error;
@@ -48,6 +86,11 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = async (email, password) => {
+    if (isOffline) {
+      setAuthError('Cannot log in while offline. Please check your internet connection.');
+      throw new Error('Cannot log in while offline');
+    }
+
     try {
       setLoading(true);
       setAuthError(null);
@@ -61,13 +104,29 @@ export const AuthProvider = ({ children }) => {
       // Store token in localStorage
       localStorage.setItem('token', response.token);
       
+      // Cache user data
+      localStorage.setItem('user_cache', JSON.stringify(response.user));
+      
       // Set user data
       setUser(response.user);
       setIsAuthenticated(true);
       return response.user;
     } catch (error) {
       console.error('Login error:', error);
-      setAuthError(typeof error === 'string' ? error : 'Failed to log in. Please check your credentials.');
+      
+      // Handle different error scenarios
+      if (error.response) {
+        // Server responded with error status
+        const message = error.response.data?.message || 'Invalid credentials';
+        setAuthError(message);
+      } else if (error.request) {
+        // No response received
+        setAuthError('Server is not responding. Please try again later.');
+      } else {
+        // Request setup error
+        setAuthError(typeof error === 'string' ? error : 'Failed to log in. Please check your credentials.');
+      }
+      
       throw error;
     } finally {
       setLoading(false);
@@ -88,6 +147,9 @@ export const AuthProvider = ({ children }) => {
       // Store token in localStorage
       localStorage.setItem('token', response.token);
       
+      // Cache user data
+      localStorage.setItem('user_cache', JSON.stringify(response.user));
+      
       // Set user data
       setUser(response.user);
       setIsAuthenticated(true);
@@ -102,8 +164,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    // Remove token from localStorage
+    // Remove token and cache from localStorage
     localStorage.removeItem('token');
+    localStorage.removeItem('user_cache');
     
     // Reset state
     setUser(null);
@@ -113,8 +176,17 @@ export const AuthProvider = ({ children }) => {
 
   const updateUser = async (userData) => {
     try {
+      if (isOffline) {
+        setAuthError('Cannot update profile while offline');
+        throw new Error('Cannot update profile while offline');
+      }
+      
       // Update user profile in the backend
       const updatedData = await userApi.updateProfile(userData);
+      
+      // Update cached user data
+      const cachedUser = JSON.parse(localStorage.getItem('user_cache') || '{}');
+      localStorage.setItem('user_cache', JSON.stringify({...cachedUser, ...updatedData}));
       
       // Update local state with the response
       setUser(prevUser => prevUser ? { ...prevUser, ...updatedData } : null);
@@ -151,6 +223,7 @@ export const AuthProvider = ({ children }) => {
         user, 
         loading, 
         authError,
+        isOffline,
         login, 
         register, 
         logout, 
