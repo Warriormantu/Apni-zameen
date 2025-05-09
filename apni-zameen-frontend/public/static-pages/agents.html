@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real Estate Agents - ApniZameen</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .agents-hero {
+      background: linear-gradient(to right, var(--estate-600), var(--estate-700));
+      color: var(--white);
+      padding: 4rem 0;
+      text-align: center;
+    }
+    
+    .agents-hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    
+    .agents-hero p {
+      font-size: 1.125rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+    }
+    
+    .search-form {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .agents-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 4rem 0;
+    }
+    
+    .agent-card {
+      background-color: var(--white);
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+    
+    .agent-card:hover {
+      transform: translateY(-8px);
+    }
+    
+    .agent-image {
+      position: relative;
+      height: 250px;
+    }
+    
+    .agent-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .agent-image-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+      padding: 1rem;
+    }
+    
+    .agent-rating {
+      display: inline-flex;
+      align-items: center;
+      background-color: var(--yellow-400, #fbbf24);
+      color: var(--yellow-800, #854d0e);
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      font-weight: 500;
+      font-size: 0.875rem;
+    }
+    
+    .agent-properties {
+      color: var(--white);
+      font-size: 0.875rem;
+      margin-left: 0.5rem;
+    }
+    
+    .agent-info {
+      padding: 1.5rem;
+    }
+    
+    .agent-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    
+    .agent-role {
+      color: var(--gray-600);
+      margin-bottom: 0.75rem;
+    }
+    
+    .agent-bio {
+      color: var(--gray-700);
+      margin-bottom: 1rem;
+    }
+    
+    .agent-details {
+      border-top: 1px solid var(--gray-200);
+      padding-top: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .agent-detail {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      color: var(--gray-600);
+    }
+    
+    .agent-detail span {
+      margin-left: 0.5rem;
+    }
+    
+    .agent-contact {
+      margin-top: 1.5rem;
+    }
+    
+    .cta-section {
+      background-color: var(--gray-100);
+      padding: 4rem 0;
+      text-align: center;
+    }
+    
+    .cta-section h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    
+    .cta-section p {
+      color: var(--gray-600);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      font-size: 1.125rem;
+    }
+    
+    @media (min-width: 640px) {
+      .agents-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .agents-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <a href="index.html">ApniZameen</a>
+        </div>
+        
+        <nav class="desktop-nav">
+          <ul>
+            <li><a href="buy.html" class="nav-link">Buy</a></li>
+            <li><a href="rent.html" class="nav-link">Rent</a></li>
+            <li><a href="sell.html" class="nav-link">Sell</a></li>
+            <li><a href="commercial.html" class="nav-link">Commercial</a></li>
+            <li><a href="projects.html" class="nav-link">Projects</a></li>
+            <li><a href="pg.html" class="nav-link">PG</a></li>
+            <li><a href="plot.html" class="nav-link">Plots</a></li>
+            <li><a href="agents.html" class="nav-link active">Agents</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
+          </ul>
+        </nav>
+        
+        <div class="auth-buttons">
+          <a href="login.html" class="btn btn-outline">Login</a>
+          <a href="register.html" class="btn btn-primary">Register</a>
+        </div>
+        
+        <button class="mobile-menu-btn">
+          <span class="menu-icon"></span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+      <ul>
+        <li><a href="buy.html" class="nav-link">Buy</a></li>
+        <li><a href="rent.html" class="nav-link">Rent</a></li>
+        <li><a href="sell.html" class="nav-link">Sell</a></li>
+        <li><a href="commercial.html" class="nav-link">Commercial</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="pg.html" class="nav-link">PG</a></li>
+        <li><a href="plot.html" class="nav-link">Plots</a></li>
+        <li><a href="agents.html" class="nav-link active">Agents</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="mobile-auth">
+        <a href="login.html" class="btn btn-outline">Login</a>
+        <a href="register.html" class="btn btn-primary">Register</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Agents Hero Section -->
+    <section class="agents-hero">
+      <div class="container">
+        <h1>Meet Our Real Estate Experts</h1>
+        <p>Our professional agents are here to guide you through every step of your real estate journey</p>
+        
+        <form class="search-form" id="agentSearchForm">
+          <div class="search-box">
+            <div class="search-input">
+              <span class="search-icon">🔍</span>
+              <input 
+                type="text" 
+                placeholder="Search by name, location or specialty..." 
+                id="agentSearchInput"
+              >
+            </div>
+            <button type="submit" class="search-btn">
+              Search
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+    
+    <!-- Agents Grid -->
+    <section>
+      <div class="container">
+        <div class="agents-grid" id="agentsGrid">
+          <!-- Agent cards will be dynamically populated -->
+        </div>
+      </div>
+    </section>
+    
+    <!-- Call to Action -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>Join Our Team of Real Estate Professionals</h2>
+        <p>Are you passionate about real estate? We're always looking for talented agents to join our growing team.</p>
+        <a href="#" class="btn btn-primary btn-lg">Apply Now</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+    <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <h3>ApniZameen</h3>
+          <p>Helping you find the property of your dreams. Our experts are available to answer any questions.</p>
+          <div class="social-links">
+            <a href="https://facebook.com/ApniZameen" class="social-link">Facebook</a>
+            <a href="https://twitter.com/ApniZameen" class="social-link">Twitter</a>
+            <a href="https://instagram.com/ApniZameen" class="social-link">Instagram</a>
+            <a href="https://linkedin.com/company/ApniZameen" class="social-link">LinkedIn</a>
+            <a href="https://youtube.com/ApniZameen" class="social-link">YouTube</a>
+          </div>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="buy.html">Buy Property</a></li>
+            <li><a href="rent.html">Rent Property</a></li>
+            <li><a href="sell.html">Sell Property</a></li>
+            <li><a href="agents.html">Find Agents</a></li>
+            <li><a href="mortgage-calculator.html">Mortgage Calculator</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Property Types</h4>
+          <ul>
+            <li><a href="apartments.html">Apartments</a></li>
+            <li><a href="houses.html">Houses</a></li>
+            <li><a href="commercial.html">Commercial</a></li>
+            <li><a href="garages.html">Garages</a></li>
+            <li><a href="lots.html">Lots</a></li>
+            <li><a href="villas.html">Villas</a></li>
+            <li><a href="pg.html">PG Accommodation</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Contact Information</h4>
+          <address>
+            <p>123 Property Street<br>Real Estate City, RC 12345</p>
+            <p>Email: <a href="mailto:info@ApniZameen.com">info@ApniZameen.com</a></p>
+            <p>Phone: <a href="tel:+11234567890">+1 (123) 456-7890</a></p>
+            <p>Support: <a href="tel:+18001234567">+1 (800) 123-4567</a></p>
+          </address>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div class="container">
+          <p>&copy; 2023 ApniZameen. All rights reserved.</p>
+          <div class="legal-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="cookies.html">Cookie Policy</a>
+            <a href="accessibility.html">Accessibility</a>
+            <a href="sitemap.html">Sitemap</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/navigation.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Agent data
+    const agentsData = [
+      {
+        id: '1',
+        name: 'Sarah Johnson',
+        image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+        role: 'Senior Real Estate Agent',
+        rating: 4.9,
+        properties: 145,
+        experience: 8,
+        phone: '+1 (555) 123-4567',
+        email: 'sarah.johnson@ApniZameen.com',
+        location: 'New York, NY',
+        bio: 'Sarah specializes in luxury properties and has consistently ranked as a top agent in the New York market for the past 5 years.'
+      },
+      {
+        id: '2',
+        name: 'Michael Chen',
+        image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+        role: 'Commercial Property Specialist',
+        rating: 4.7,
+        properties: 98,
+        experience: 12,
+        phone: '+1 (555) 987-6543',
+        email: 'michael.chen@ApniZameen.com',
+        location: 'San Francisco, CA',
+        bio: 'With over a decade of experience in commercial real estate, Michael has helped numerous businesses find their ideal locations throughout the Bay Area.'
+      },
+      {
+        id: '3',
+        name: 'Olivia Rodriguez',
+        image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+        role: 'Residential Sales Manager',
+        rating: 4.8,
+        properties: 210,
+        experience: 6,
+        phone: '+1 (555) 234-5678',
+        email: 'olivia.rodriguez@ApniZameen.com',
+        location: 'Miami, FL',
+        bio: "Olivia specializes in waterfront properties and has an extensive network of clients in South Florida. She's known for her personalized approach to each client."
+      },
+      {
+        id: '4',
+        name: 'James Wilson',
+        image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+        role: 'Investment Property Consultant',
+        rating: 4.6,
+        properties: 120,
+        experience: 15,
+        phone: '+1 (555) 876-5432',
+        email: 'james.wilson@ApniZameen.com',
+        location: 'Chicago, IL',
+        bio: 'James helps investors identify profitable real estate opportunities. His background in finance gives him a unique perspective on property valuation.'
+      }
+    ];
+    
+    // Create agent cards
+    function renderAgents(agents) {
+      const agentsGrid = document.getElementById('agentsGrid');
+      agentsGrid.innerHTML = '';
+      
+      if (agents.length === 0) {
+        agentsGrid.innerHTML = `
+          <div class="col-span-3 text-center py-12">
+            <h3 class="text-xl font-semibold mb-2">No agents found</h3>
+            <p class="text-gray-600">Try adjusting your search criteria</p>
+          </div>
+        `;
+        return;
+      }
+      
+      agents.forEach(agent => {
+        const agentCard = document.createElement('div');
+        agentCard.className = 'agent-card';
+        agentCard.innerHTML = `
+          <div class="agent-image">
+            <img src="${agent.image}" alt="${agent.name}">
+            <div class="agent-image-overlay">
+              <div>
+                <span class="agent-rating">★ ${agent.rating}</span>
+                <span class="agent-properties">${agent.properties} Properties</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="agent-info">
+            <h3 class="agent-name">${agent.name}</h3>
+            <p class="agent-role">${agent.role}</p>
+            <p class="agent-bio">${agent.bio}</p>
+            
+            <div class="agent-details">
+              <div class="agent-detail">
+                <span>📍</span>
+                <span>${agent.location}</span>
+              </div>
+              <div class="agent-detail">
+                <span>📞</span>
+                <span>${agent.phone}</span>
+              </div>
+              <div class="agent-detail">
+                <span>✉️</span>
+                <span>${agent.email}</span>
+              </div>
+            </div>
+            
+            <div class="agent-contact">
+              <button class="btn btn-primary w-full">Contact Agent</button>
+            </div>
+          </div>
+        `;
+        
+        agentsGrid.appendChild(agentCard);
+      });
+    }
+    
+    // Search functionality
+    document.getElementById('agentSearchForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const searchTerm = document.getElementById('agentSearchInput').value.toLowerCase();
+      
+      let filteredAgents;
+      
+      if (searchTerm.trim() === '') {
+        filteredAgents = agentsData;
+      } else {
+        filteredAgents = agentsData.filter(agent => 
+          agent.name.toLowerCase().includes(searchTerm) ||
+          agent.location.toLowerCase().includes(searchTerm) ||
+          agent.role.toLowerCase().includes(searchTerm)
+        );
+      }
+      
+      renderAgents(filteredAgents);
+    });
+    
+    // Initial render
+    document.addEventListener('DOMContentLoaded', () => {
+      renderAgents(agentsData);
+    });
+  </script>
+</body>
+</html>
+
+

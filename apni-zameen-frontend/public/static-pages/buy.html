@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buy Properties - ApniZameen</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .property-listings {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    @media (min-width: 640px) {
+      .property-listings {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .property-listings {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    .page-title {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      justify-content: center;
+    }
+    
+    .filter-select {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--gray-300);
+      border-radius: 0.375rem;
+      background-color: white;
+    }
+    
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 3rem;
+      background-color: var(--gray-100);
+      border-radius: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <a href="index.html">ApniZameen</a>
+        </div>
+        
+        <nav class="desktop-nav">
+          <ul>
+            <li><a href="buy.html" class="nav-link active">Buy</a></li>
+            <li><a href="rent.html" class="nav-link">Rent</a></li>
+            <li><a href="sell.html" class="nav-link">Sell</a></li>
+            <li><a href="commercial.html" class="nav-link">Commercial</a></li>
+            <li><a href="projects.html" class="nav-link">Projects</a></li>
+            <li><a href="pg.html" class="nav-link">PG</a></li>
+            <li><a href="plot.html" class="nav-link">Plots</a></li>
+            <li><a href="agents.html" class="nav-link">Agents</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
+          </ul>
+        </nav>
+        
+        <div class="auth-buttons">
+          <a href="login.html" class="btn btn-outline">Login</a>
+          <a href="register.html" class="btn btn-primary">Register</a>
+        </div>
+        
+        <button class="mobile-menu-btn">
+          <span class="menu-icon"></span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+      <ul>
+        <li><a href="buy.html" class="nav-link active">Buy</a></li>
+        <li><a href="rent.html" class="nav-link">Rent</a></li>
+        <li><a href="sell.html" class="nav-link">Sell</a></li>
+        <li><a href="commercial.html" class="nav-link">Commercial</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="pg.html" class="nav-link">PG</a></li>
+        <li><a href="plot.html" class="nav-link">Plots</a></li>
+        <li><a href="agents.html" class="nav-link">Agents</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="mobile-auth">
+        <a href="login.html" class="btn btn-outline">Login</a>
+        <a href="register.html" class="btn btn-primary">Register</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <section class="container">
+      <div class="page-title">
+        <h1>Properties for Sale</h1>
+        <p>Find your dream home to purchase in your preferred location</p>
+      </div>
+      
+      <div class="filters">
+        <select class="filter-select">
+          <option value="">Property Type</option>
+          <option value="apartment">Apartment</option>
+          <option value="house">House</option>
+          <option value="villa">Villa</option>
+          <option value="penthouse">Penthouse</option>
+        </select>
+        
+        <select class="filter-select">
+          <option value="">Price Range</option>
+          <option value="0-500000">$0 - $500,000</option>
+          <option value="500000-1000000">$500,000 - $1,000,000</option>
+          <option value="1000000-2000000">$1,000,000 - $2,000,000</option>
+          <option value="2000000+">$2,000,000+</option>
+        </select>
+        
+        <select class="filter-select">
+          <option value="">Bedrooms</option>
+          <option value="1">1+ Bed</option>
+          <option value="2">2+ Beds</option>
+          <option value="3">3+ Beds</option>
+          <option value="4">4+ Beds</option>
+        </select>
+        
+        <select class="filter-select">
+          <option value="">Bathrooms</option>
+          <option value="1">1+ Bath</option>
+          <option value="2">2+ Baths</option>
+          <option value="3">3+ Baths</option>
+          <option value="4">4+ Baths</option>
+        </select>
+      </div>
+      
+      <div class="property-listings">
+        <!-- Property listings will be populated by JavaScript -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+    <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <h3>ApniZameen</h3>
+          <p>Helping you find the property of your dreams. Our experts are available to answer any questions.</p>
+          <div class="social-links">
+            <a href="https://facebook.com/ApniZameen" class="social-link">Facebook</a>
+            <a href="https://twitter.com/ApniZameen" class="social-link">Twitter</a>
+            <a href="https://instagram.com/ApniZameen" class="social-link">Instagram</a>
+            <a href="https://linkedin.com/company/ApniZameen" class="social-link">LinkedIn</a>
+            <a href="https://youtube.com/ApniZameen" class="social-link">YouTube</a>
+          </div>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="buy.html">Buy Property</a></li>
+            <li><a href="rent.html">Rent Property</a></li>
+            <li><a href="sell.html">Sell Property</a></li>
+            <li><a href="agents.html">Find Agents</a></li>
+            <li><a href="mortgage-calculator.html">Mortgage Calculator</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Property Types</h4>
+          <ul>
+            <li><a href="apartments.html">Apartments</a></li>
+            <li><a href="houses.html">Houses</a></li>
+            <li><a href="commercial.html">Commercial</a></li>
+            <li><a href="garages.html">Garages</a></li>
+            <li><a href="lots.html">Lots</a></li>
+            <li><a href="villas.html">Villas</a></li>
+            <li><a href="pg.html">PG Accommodation</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Contact Information</h4>
+          <address>
+            <p>123 Property Street<br>Real Estate City, RC 12345</p>
+            <p>Email: <a href="mailto:info@ApniZameen.com">info@ApniZameen.com</a></p>
+            <p>Phone: <a href="tel:+11234567890">+1 (123) 456-7890</a></p>
+            <p>Support: <a href="tel:+18001234567">+1 (800) 123-4567</a></p>
+          </address>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div class="container">
+          <p>&copy; 2023 ApniZameen. All rights reserved.</p>
+          <div class="legal-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="cookies.html">Cookie Policy</a>
+            <a href="accessibility.html">Accessibility</a>
+            <a href="sitemap.html">Sitemap</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/navigation.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+
+

@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Apni Zameen Frontend
+
+This is the frontend for the Apni Zameen real estate platform, built with React, TypeScript, and Tailwind CSS.
+
+## Features
+
+- User registration and authentication with JWT
+- Property listings with search and filtering
+- Property details with images and features
+- Save favorite properties
+- User dashboard and profile management
+- Responsive design for all devices
+- Dark/light mode support
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+- Node.js (v16+)
+- npm or yarn
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Installation
+1. Clone the repository
+2. Navigate to the frontend directory: `cd urban-nest-frontend`
+3. Install dependencies: `npm install` or `yarn install`
+4. Start the development server: `npm run dev` or `yarn dev`
+5. The application will be available at `http://localhost:5173`
+
+## Environment Variables
+
+Create a `.env` file in the root directory with the following variables:
+
+```
+VITE_API_BASE_URL=http://localhost/api
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Folder Structure
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- `/src/components` - Reusable UI components
+- `/src/pages` - Application pages
+- `/src/context` - React context for state management
+- `/src/services` - API services
+- `/src/hooks` - Custom React hooks
+- `/src/types` - TypeScript type definitions
+- `/src/utils` - Utility functions
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Scripts
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Lint code with ESLint
+- `npm run test` - Run tests

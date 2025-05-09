@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mortgage Calculator - ApniZameen</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .calculator-section {
+      padding: 4rem 0;
+      background-color: var(--white);
+    }
+    
+    .calculator-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: var(--white);
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+    }
+    
+    .calculator-form {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    @media (min-width: 640px) {
+      .calculator-form {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    .calculator-result {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background-color: var(--estate-50);
+      border-radius: 0.5rem;
+      border: 1px solid var(--estate-100);
+    }
+    
+    .result-heading {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--estate-700);
+    }
+    
+    .result-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    
+    .result-item {
+      margin-bottom: 0.75rem;
+    }
+    
+    .result-label {
+      font-weight: 500;
+      font-size: 0.875rem;
+      color: var(--gray-600);
+    }
+    
+    .result-value {
+      font-weight: 600;
+      font-size: 1.125rem;
+      color: var(--gray-800);
+    }
+    
+    .form-span-2 {
+      grid-column: span 2;
+    }
+    
+    .range-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .range-values {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.875rem;
+      color: var(--gray-600);
+    }
+    
+    input[type="range"] {
+      width: 100%;
+      -webkit-appearance: none;
+      height: 8px;
+      border-radius: 4px;
+      background: var(--gray-200);
+      outline: none;
+    }
+    
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--estate-600);
+      cursor: pointer;
+    }
+    
+    input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--estate-600);
+      cursor: pointer;
+    }
+    
+    .payment-chart {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background-color: var(--white);
+      border-radius: 0.5rem;
+      border: 1px solid var(--gray-200);
+      height: 300px;
+    }
+    
+    .info-section {
+      margin-top: 4rem;
+      padding: 2rem;
+      background-color: var(--gray-50);
+      border-radius: 0.5rem;
+    }
+    
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    @media (min-width: 768px) {
+      .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    .info-card {
+      padding: 1.5rem;
+      background-color: var(--white);
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+    
+    .info-card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--estate-700);
+    }
+    
+    .info-card p {
+      color: var(--gray-600);
+      margin-bottom: 1rem;
+    }
+    
+    .info-card ul {
+      list-style-type: disc;
+      margin-left: 1.5rem;
+      color: var(--gray-600);
+    }
+    
+    .info-card li {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <a href="index.html">ApniZameen</a>
+        </div>
+        
+        <nav class="desktop-nav">
+          <ul>
+            <li><a href="buy.html" class="nav-link">Buy</a></li>
+            <li><a href="rent.html" class="nav-link">Rent</a></li>
+            <li><a href="sell.html" class="nav-link">Sell</a></li>
+            <li><a href="commercial.html" class="nav-link">Commercial</a></li>
+            <li><a href="projects.html" class="nav-link">Projects</a></li>
+            <li><a href="pg.html" class="nav-link">PG</a></li>
+            <li><a href="plot.html" class="nav-link">Plots</a></li>
+            <li><a href="agents.html" class="nav-link">Agents</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
+          </ul>
+        </nav>
+        
+        <div class="auth-buttons">
+          <a href="login.html" class="btn btn-outline">Login</a>
+          <a href="register.html" class="btn btn-primary">Register</a>
+        </div>
+        
+        <button class="mobile-menu-btn">
+          <span class="menu-icon"></span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+      <ul>
+        <li><a href="buy.html" class="nav-link">Buy</a></li>
+        <li><a href="rent.html" class="nav-link">Rent</a></li>
+        <li><a href="sell.html" class="nav-link">Sell</a></li>
+        <li><a href="commercial.html" class="nav-link">Commercial</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="pg.html" class="nav-link">PG</a></li>
+        <li><a href="plot.html" class="nav-link">Plots</a></li>
+        <li><a href="agents.html" class="nav-link">Agents</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="mobile-auth">
+        <a href="login.html" class="btn btn-outline">Login</a>
+        <a href="register.html" class="btn btn-primary">Register</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="container">
+      <div class="page-title">
+        <h1>Mortgage Calculator</h1>
+        <p>Estimate your monthly mortgage payments and see the amortization breakdown</p>
+      </div>
+      
+      <section class="calculator-section">
+        <div class="calculator-container">
+          <form id="mortgageCalculator" class="calculator-form">
+            <div class="form-group">
+              <label for="homePrice">Home Price ($)</label>
+              <input type="number" id="homePrice" name="homePrice" value="300000" min="50000" max="10000000">
+            </div>
+            
+            <div class="form-group">
+              <label for="downPayment">Down Payment ($)</label>
+              <input type="number" id="downPayment" name="downPayment" value="60000" min="0" max="10000000">
+            </div>
+            
+            <div class="form-group">
+              <label for="loanTerm">Loan Term (years)</label>
+              <select id="loanTerm" name="loanTerm">
+                <option value="15">15 years</option>
+                <option value="20">20 years</option>
+                <option value="30" selected>30 years</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="interestRate">Interest Rate (%)</label>
+              <input type="number" id="interestRate" name="interestRate" value="4.5" min="0.1" max="20" step="0.1">
+            </div>
+            
+            <div class="form-group form-span-2">
+              <label for="propertyTaxRate">Property Tax Rate (% per year)</label>
+              <div class="range-container">
+                <input type="range" id="propertyTaxRate" name="propertyTaxRate" value="1.5" min="0" max="5" step="0.1">
+                <div class="range-values">
+                  <span>0%</span>
+                  <span id="propertyTaxRateValue">1.5%</span>
+                  <span>5%</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group form-span-2">
+              <label for="homeInsurance">Home Insurance ($ per year)</label>
+              <input type="number" id="homeInsurance" name="homeInsurance" value="1200" min="0" max="10000">
+            </div>
+            
+            <div class="form-group form-span-2">
+              <button type="button" id="calculateBtn" class="btn btn-primary" style="width: 100%;">Calculate</button>
+            </div>
+          </form>
+          
+          <div id="calculatorResult" class="calculator-result" style="display: none;">
+            <h3 class="result-heading">Monthly Payment Breakdown</h3>
+            
+            <div class="result-grid">
+              <div class="result-item">
+                <div class="result-label">Principal & Interest</div>
+                <div class="result-value" id="principalInterest">$1,520.06</div>
+              </div>
+              
+              <div class="result-item">
+                <div class="result-label">Property Tax</div>
+                <div class="result-value" id="propertyTax">$375.00</div>
+              </div>
+              
+              <div class="result-item">
+                <div class="result-label">Home Insurance</div>
+                <div class="result-value" id="insuranceAmount">$100.00</div>
+              </div>
+              
+              <div class="result-item">
+                <div class="result-label">Total Monthly Payment</div>
+                <div class="result-value" id="totalPayment">$1,995.06</div>
+              </div>
+            </div>
+            
+            <div class="result-item" style="margin-top: 1.5rem;">
+              <div class="result-label">Loan Amount</div>
+              <div class="result-value" id="loanAmount">$240,000</div>
+            </div>
+            
+            <div class="payment-chart" id="paymentChart">
+              <!-- Chart will be inserted here -->
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="info-section">
+        <h2 style="text-align: center; margin-bottom: 2rem;">Understanding Your Mortgage</h2>
+        
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>What is a Mortgage?</h3>
+            <p>A mortgage is a loan from a bank or financial institution that helps you purchase a home. You pay back the loan over time, typically with interest.</p>
+            <p>Key components of a mortgage include:</p>
+            <ul>
+              <li>Principal: The amount you borrow</li>
+              <li>Interest: The cost of borrowing money</li>
+              <li>Term: The length of time to repay the loan</li>
+              <li>Down Payment: Initial payment you make upfront</li>
+            </ul>
+          </div>
+          
+          <div class="info-card">
+            <h3>Types of Mortgages</h3>
+            <p>There are several types of mortgages available:</p>
+            <ul>
+              <li><strong>Fixed-Rate:</strong> Interest rate remains the same for the entire loan term</li>
+              <li><strong>Adjustable-Rate (ARM):</strong> Interest rate can change over time</li>
+              <li><strong>FHA Loans:</strong> Government-backed loans with lower down payment requirements</li>
+              <li><strong>VA Loans:</strong> For veterans and military service members</li>
+              <li><strong>USDA Loans:</strong> For rural property purchases</li>
+            </ul>
+          </div>
+          
+          <div class="info-card">
+            <h3>Tips for First-Time Homebuyers</h3>
+            <ul>
+              <li>Check your credit score before applying</li>
+              <li>Save for a down payment (aim for 20% to avoid PMI)</li>
+              <li>Get pre-approved before house hunting</li>
+              <li>Compare rates from multiple lenders</li>
+              <li>Consider all costs, not just the mortgage payment</li>
+              <li>Don't rush - take time to find the right home</li>
+            </ul>
+          </div>
+          
+          <div class="info-card">
+            <h3>Understanding Closing Costs</h3>
+            <p>Closing costs are fees associated with finalizing your mortgage, typically 2-5% of the loan amount.</p>
+            <p>Common closing costs include:</p>
+            <ul>
+              <li>Loan origination fees</li>
+              <li>Appraisal fees</li>
+              <li>Title insurance</li>
+              <li>Home inspection fees</li>
+              <li>Property transfer taxes</li>
+              <li>Attorney fees</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <!-- Footer -->
+    <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <h3>ApniZameen</h3>
+          <p>Helping you find the property of your dreams. Our experts are available to answer any questions.</p>
+          <div class="social-links">
+            <a href="https://facebook.com/ApniZameen" class="social-link">Facebook</a>
+            <a href="https://twitter.com/ApniZameen" class="social-link">Twitter</a>
+            <a href="https://instagram.com/ApniZameen" class="social-link">Instagram</a>
+            <a href="https://linkedin.com/company/ApniZameen" class="social-link">LinkedIn</a>
+            <a href="https://youtube.com/ApniZameen" class="social-link">YouTube</a>
+          </div>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="buy.html">Buy Property</a></li>
+            <li><a href="rent.html">Rent Property</a></li>
+            <li><a href="sell.html">Sell Property</a></li>
+            <li><a href="agents.html">Find Agents</a></li>
+            <li><a href="mortgage-calculator.html">Mortgage Calculator</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Property Types</h4>
+          <ul>
+            <li><a href="apartments.html">Apartments</a></li>
+            <li><a href="houses.html">Houses</a></li>
+            <li><a href="commercial.html">Commercial</a></li>
+            <li><a href="garages.html">Garages</a></li>
+            <li><a href="lots.html">Lots</a></li>
+            <li><a href="villas.html">Villas</a></li>
+            <li><a href="pg.html">PG Accommodation</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Contact Information</h4>
+          <address>
+            <p>123 Property Street<br>Real Estate City, RC 12345</p>
+            <p>Email: <a href="mailto:info@ApniZameen.com">info@ApniZameen.com</a></p>
+            <p>Phone: <a href="tel:+11234567890">+1 (123) 456-7890</a></p>
+            <p>Support: <a href="tel:+18001234567">+1 (800) 123-4567</a></p>
+          </address>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div class="container">
+          <p>&copy; 2023 ApniZameen. All rights reserved.</p>
+          <div class="legal-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="cookies.html">Cookie Policy</a>
+            <a href="accessibility.html">Accessibility</a>
+            <a href="sitemap.html">Sitemap</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/navigation.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Mortgage Calculator Functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      // Update property tax rate display as slider changes
+      const propertyTaxRateSlider = document.getElementById('propertyTaxRate');
+      const propertyTaxRateValue = document.getElementById('propertyTaxRateValue');
+      
+      propertyTaxRateSlider.addEventListener('input', () => {
+        propertyTaxRateValue.textContent = `${propertyTaxRateSlider.value}%`;
+      });
+      
+      // Calculate button click handler
+      const calculateBtn = document.getElementById('calculateBtn');
+      calculateBtn.addEventListener('click', calculateMortgage);
+      
+      // Initial calculation
+      calculateMortgage();
+    });
+    
+    function calculateMortgage() {
+      // Get form values
+      const homePrice = parseFloat(document.getElementById('homePrice').value);
+      const downPayment = parseFloat(document.getElementById('downPayment').value);
+      const loanTerm = parseInt(document.getElementById('loanTerm').value);
+      const interestRate = parseFloat(document.getElementById('interestRate').value) / 100; // Convert to decimal
+      const propertyTaxRate = parseFloat(document.getElementById('propertyTaxRate').value) / 100; // Convert to decimal
+      const homeInsurance = parseFloat(document.getElementById('homeInsurance').value);
+      
+      // Calculate loan amount
+      const loanAmount = homePrice - downPayment;
+      
+      // Calculate monthly interest rate
+      const monthlyInterestRate = interestRate / 12;
+      
+      // Calculate number of payments
+      const numberOfPayments = loanTerm * 12;
+      
+      // Calculate monthly principal and interest
+      const monthlyPrincipalInterest = loanAmount * 
+        (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments)) / 
+        (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1);
+      
+      // Calculate monthly property tax
+      const monthlyPropertyTax = (homePrice * propertyTaxRate) / 12;
+      
+      // Calculate monthly home insurance
+      const monthlyInsurance = homeInsurance / 12;
+      
+      // Calculate total monthly payment
+      const totalMonthlyPayment = monthlyPrincipalInterest + monthlyPropertyTax + monthlyInsurance;
+      
+      // Display results
+      document.getElementById('loanAmount').textContent = formatCurrency(loanAmount);
+      document.getElementById('principalInterest').textContent = formatCurrency(monthlyPrincipalInterest);
+      document.getElementById('propertyTax').textContent = formatCurrency(monthlyPropertyTax);
+      document.getElementById('insuranceAmount').textContent = formatCurrency(monthlyInsurance);
+      document.getElementById('totalPayment').textContent = formatCurrency(totalMonthlyPayment);
+      
+      // Show results
+      document.getElementById('calculatorResult').style.display = 'block';
+      
+      // Create payment breakdown chart
+      createPaymentChart(monthlyPrincipalInterest, monthlyPropertyTax, monthlyInsurance);
+    }
+    
+    function formatCurrency(amount) {
+      return new Intl.NumberFormat('en-US', { 
+        style: 'currency', 
+        currency: 'USD',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2
+      }).format(amount);
+    }
+    
+    function createPaymentChart(principal, tax, insurance) {
+      const chartContainer = document.getElementById('paymentChart');
+      
+      // Create a simple SVG chart (pie chart)
+      const total = principal + tax + insurance;
+      const principalPercent = (principal / total) * 100;
+      const taxPercent = (tax / total) * 100;
+      const insurancePercent = (insurance / total) * 100;
+      
+      // Create the SVG pie chart with CSS
+      chartContainer.innerHTML = `
+        <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+          <div style="width: 200px; height: 200px; position: relative;">
+            <div style="width: 100%; height: 100%; border-radius: 50%; background: conic-gradient(
+              var(--estate-600) 0% ${principalPercent}%, 
+              var(--estate-400, #66b3ff) ${principalPercent}% ${principalPercent + taxPercent}%, 
+              var(--estate-200, #b3d9ff) ${principalPercent + taxPercent}% 100%
+            );"></div>
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+              <div style="font-weight: 700; font-size: 1.25rem;">${formatCurrency(total)}</div>
+              <div style="font-size: 0.875rem; color: var(--gray-600);">per month</div>
+            </div>
+          </div>
+          
+          <div style="margin-left: 2rem;">
+            <div style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+              <div style="width: 16px; height: 16px; background-color: var(--estate-600); border-radius: 4px; margin-right: 0.5rem;"></div>
+              <div>Principal & Interest (${Math.round(principalPercent)}%)</div>
+            </div>
+            <div style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+              <div style="width: 16px; height: 16px; background-color: var(--estate-400, #66b3ff); border-radius: 4px; margin-right: 0.5rem;"></div>
+              <div>Property Tax (${Math.round(taxPercent)}%)</div>
+            </div>
+            <div style="display: flex; align-items: center;">
+              <div style="width: 16px; height: 16px; background-color: var(--estate-200, #b3d9ff); border-radius: 4px; margin-right: 0.5rem;"></div>
+              <div>Home Insurance (${Math.round(insurancePercent)}%)</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html> 
+

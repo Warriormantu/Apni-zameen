@@ -1,0 +1,23 @@
+# Composer
+/vendor/
+composer.lock
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Caches and system files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Logs and uploaded files
+/logs/*
+/uploads/*
+!/logs/.gitkeep
+!/uploads/.gitkeep
+
+# Local configuration
+/config/local.php 
