@@ -1,5 +1,5 @@
 import React from 'react';
-import PageLayout from '../components/layout/PageLayout';
+import Layout from '../components/layout/Layout';
 import PropertyListTemplate from '../components/PropertyListTemplate';
 
 /**
@@ -7,17 +7,14 @@ import PropertyListTemplate from '../components/PropertyListTemplate';
  */
 const Commercial = () => {
   return (
-    <PageLayout
-      pageTitle="Commercial Properties"
-      pageDescription="Explore commercial properties for your business needs on Apni Zameen"
-    >
+    <Layout>
       <PropertyListTemplate
         title="Commercial Properties"
         description="Explore commercial properties for your business needs"
         type="commercial"
         useStaticPage={false} // Using dynamic React rendering instead of static HTML
       />
-    </PageLayout>
+    </Layout>
   );
 };
 

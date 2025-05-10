@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>New Projects - ApniZameen</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -35,14 +35,14 @@
           <a href="register.html" class="btn btn-primary">Register</a>
         </div>
         
-        <button class="mobile-menu-btn">
+        <button class="mobile-menu-btn" id="mobile-menu-button">
           <span class="menu-icon"></span>
         </button>
       </div>
     </div>
     
     <!-- Mobile Menu -->
-    <div class="mobile-menu">
+    <div class="mobile-menu" id="mobile-menu">
       <ul>
         <li><a href="buy.html" class="nav-link">Buy</a></li>
         <li><a href="rent.html" class="nav-link">Rent</a></li>
@@ -69,29 +69,29 @@
       </div>
       
       <div class="filters">
-        <select class="filter-select">
-          <option value="">Project Type</option>
-          <option value="residential">Residential</option>
-          <option value="commercial">Commercial</option>
-          <option value="mixed">Mixed Use</option>
-        </select>
-        
-        <select class="filter-select">
-          <option value="">Status</option>
-          <option value="upcoming">Upcoming</option>
-          <option value="ongoing">Ongoing</option>
-          <option value="completed">Completed</option>
-        </select>
-        
-        <select class="filter-select">
-          <option value="">Price Range</option>
-          <option value="affordable">Affordable</option>
-          <option value="mid-range">Mid Range</option>
-          <option value="luxury">Luxury</option>
-        </select>
+        <form id="project-filter-form">
+          <select class="filter-select" id="type-filter">
+            <option value="all">All Project Types</option>
+            <option value="residential">Residential</option>
+            <option value="commercial">Commercial</option>
+            <option value="villa">Villa</option>
+          </select>
+          
+          <select class="filter-select" id="location-filter">
+            <option value="all">All Locations</option>
+            <option value="Gurgaon">Gurgaon</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Bangalore">Bangalore</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Hyderabad">Hyderabad</option>
+          </select>
+          
+          <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
       </div>
       
-      <div class="project-listings">
+      <div class="project-listings" id="projects-container">
         <!-- Will be populated by JavaScript -->
       </div>
     </section>

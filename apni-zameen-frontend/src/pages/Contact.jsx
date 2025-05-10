@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PageLayout from '../components/layout/PageLayout';
+import Layout from '../components/layout/Layout';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -51,10 +51,7 @@ const Contact = () => {
   };
 
   return (
-    <PageLayout
-      pageTitle="Contact Us"
-      pageDescription="Contact Apni Zameen for any questions or inquiries"
-    >
+    <Layout>
       <div className="page-container py-12">
         <div className="bg-white dark:bg-secondary-800 shadow sm:rounded-lg">
           <div className="px-4 py-5 sm:p-6">
@@ -238,7 +235,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
-    </PageLayout>
+    </Layout>
   );
 };
 

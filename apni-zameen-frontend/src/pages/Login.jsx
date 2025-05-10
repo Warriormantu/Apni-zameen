@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import PageLayout from '../components/layout/PageLayout';
+import Layout from '../components/layout/Layout';
 import AuthTemplate from '../components/AuthTemplate';
 
 /**
@@ -72,12 +72,7 @@ const Login = () => {
   };
   
   return (
-    <PageLayout
-      pageTitle="Login"
-      pageDescription="Sign in to your Apni Zameen account"
-      fullWidth={true}
-      noPadding={true}
-    >
+    <Layout>
       <AuthTemplate
         type="login"
         title="Welcome back"
@@ -87,7 +82,7 @@ const Login = () => {
         useStaticPage={false}
         message={message}
       />
-    </PageLayout>
+    </Layout>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import PageLayout from '../components/layout/PageLayout';
+import Layout from '../components/layout/Layout';
 import AuthTemplate from '../components/AuthTemplate';
 
 /**
@@ -69,20 +69,15 @@ const Register = () => {
     
     // Simulate registration process
     // In a real app, this would call an API endpoint
-      await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise(resolve => setTimeout(resolve, 1000));
       
     // For now, just simulate a successful registration
     localStorage.setItem('isAuthenticated', 'true');
-      navigate('/dashboard');
+    navigate('/dashboard');
   };
 
   return (
-    <PageLayout
-      pageTitle="Register"
-      pageDescription="Create your account on Apni Zameen"
-      fullWidth={true}
-      noPadding={true}
-    >
+    <Layout>
       <AuthTemplate
         type="register"
         title="Create your account"
@@ -91,7 +86,7 @@ const Register = () => {
         onSubmit={handleRegister}
         useStaticPage={false}
       />
-    </PageLayout>
+    </Layout>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import PageLayout from '../components/layout/PageLayout';
+import Layout from '../components/layout/Layout';
 import DirectoryTemplate from '../components/DirectoryTemplate';
 
 /**
@@ -7,17 +7,14 @@ import DirectoryTemplate from '../components/DirectoryTemplate';
  */
 const Agents = () => {
   return (
-    <PageLayout
-      pageTitle="Find Real Estate Agents"
-      pageDescription="Connect with top real estate professionals across India on Apni Zameen"
-    >
+    <Layout>
       <DirectoryTemplate
         title="Find Real Estate Agents"
         description="Connect with top real estate professionals across India"
         type="agents"
         useStaticPage={false} // Using dynamic React rendering instead of static HTML
       />
-    </PageLayout>
+    </Layout>
   );
 };
 

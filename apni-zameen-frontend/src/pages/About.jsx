@@ -1,5 +1,5 @@
 import React from 'react';
-import PageLayout from '../components/layout/PageLayout';
+import Layout from '../components/layout/Layout';
 import { Link } from 'react-router-dom';
 
 /**
@@ -7,10 +7,7 @@ import { Link } from 'react-router-dom';
  */
 const About = () => {
   return (
-    <PageLayout
-      pageTitle="About Us"
-      pageDescription="Learn about Apni Zameen, our mission, vision and values"
-    >
+    <Layout>
       <div className="page-container">
         <h1 className="text-3xl font-bold mb-6">About Apni Zameen</h1>
         
@@ -61,7 +58,7 @@ const About = () => {
           </Link>
         </div>
       </div>
-    </PageLayout>
+    </Layout>
   );
 };
 
